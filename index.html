@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="connectBleButton">Connect to BLE Device</button>
+    <button id="disconnectBleButton">Disconnect BLE Device</button>
+    
+</body>
+<script>
+    const connectButton = document.getElementById('connectBleButton');
+    const disconnectButton = document.getElementById('disconnectBleButton');
+
+
+    const bleService = '88a27234-28dd-4fb4-8983-6d3e392d038e'
+    const stateCharateristic = '15f366ef-6925-4da3-af6f-7de2c1b82794'
+    const infoCharaterisctic = 'b061cb48-d310-489b-bb30-f23ab5cebf7d'
+
+    connectButton.addEventListener('click', (event) => {
+        if (isWebBluetoothEnabled()){
+            connectToDevice();
+        }
+    });
+
+    function isWebBluetoothEnabled() {
+        if (!navigator.bluetooth) {
+            console.log("Web Bluetooth API is not available in this browser!");
+            return false
+        }
+        console.log('Web Bluetooth API supported in this browser.');
+        return true
+    }
+
+    function connectToDevice(){
+        console.log('Initializing Bluetooth...');
+        navigator.bluetooth.requestDevice({
+            filters: [{services: bleService}]
+        }).then(device => {})
+        .catch(error => {console.error(error)})};
+</script>
+</html>
