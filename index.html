@@ -38,7 +38,7 @@
         console.log('Initializing Bluetooth...');
         navigator.bluetooth.requestDevice({
             filters: [{services: bleService}]
-        }).then(device => {})
+        }).then(device => {console.log("Hello")})
         .catch(error => {console.error(error)})};
 </script>
 </html>
